@@ -19,7 +19,15 @@ func ConnectDb(envFilename string) (*pq.Connector, error) {
 	Database := os.Getenv("Database")
 	Host := os.Getenv("Host")
 	cfg := pq.Config{
-		Host: H,
+		Host: Host,
+		User: User,
+		Port: uint16(port),
+		Password: Password,
+		Database: Database,
 	}
-
+	c, err := pq.NewConnectorConfig(cfg)
+	if err != nil{
+		return  nil, err
+	}
+	return c, nil
 }
