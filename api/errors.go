@@ -8,4 +8,5 @@ func (e Consterror) Error() string {
 
 const (
 	INTERNAL_SERVER_ERROR = Consterror("An Internal Server Error Occured")
+	FAILED_TO_LOAD_ENV    = Consterror("Failed to load env")
 )
