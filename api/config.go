@@ -7,8 +7,8 @@ import (
 )
 
 type ApplicationInterface interface {
-	Routes()
-	Run(h *http.ServeMux)
+	Routes() *http.ServeMux
+	Run(mux *http.ServeMux)
 }
 type Application struct {
 	Db *sql.DB
