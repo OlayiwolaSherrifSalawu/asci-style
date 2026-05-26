@@ -1,9 +1,10 @@
 package api
 
 import (
-	"database/sql"
 	"log"
 	"net/http"
+
+	"github.com/OlayiwolaSherrifSalawu/asci-style.git/api/handlers"
 )
 
 type ApplicationInterface interface {
@@ -11,7 +12,7 @@ type ApplicationInterface interface {
 	Run(mux *http.ServeMux)
 }
 type Application struct {
-	Db *sql.DB
+	UserHandler *handlers.UserRepo
 	configs
 }
 
@@ -21,10 +22,10 @@ type configs struct {
 	ErrorLogger *log.Logger
 }
 
-func NewApplication(db *sql.DB) *Application {
+func NewApplication(userRepor *handlers.UserRepo) *Application {
 	return &Application{
-		Db:      db,
-		configs: configs{Port: ":4000", ErrorLogger: log.Default(), InfoLogger: log.Default()},
+		UserHandler: userRepor,
+		configs:     configs{Port: ":4000", ErrorLogger: log.Default(), InfoLogger: log.Default()},
 	}
 }
 
