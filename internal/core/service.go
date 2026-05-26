@@ -2,13 +2,10 @@ package core
 
 import "strings"
 
-func (a *AsciiService) GenerateAscii(inputSlice []string, banner string) (string, error) {
+func (a *AsciiService) GenerateAscii(inputSlice []string, file []string) (string, error) {
 	// to avoid memory overhead using a string builder would be better
 	var sb strings.Builder
-	file, err := a.Loadbanner(banner)
-	if err != nil {
-		return "", nil
-	}
+
 	for i := 0; i < len(inputSlice); i++ {
 		// An empty segment in the input represents a newline in the original string
 		if inputSlice[i] == "" {
@@ -36,4 +33,10 @@ func (a *AsciiService) Loadbanner(s string) ([]string, error) {
 		return val, nil
 	}
 	return nil, Banner_Not_Found
+}
+
+func (a *AsciiService) BuildAscii(input, banner string) (string, error) {
+	if input == "" || banner == "" {
+		return "", IMPROPER_ARGUEMENT
+	}
 }

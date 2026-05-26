@@ -8,7 +8,6 @@ import (
 )
 
 type ApplicationInterface interface {
-	
 	Run(mux *http.ServeMux)
 }
 type Application struct {
