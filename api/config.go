@@ -8,7 +8,7 @@ import (
 )
 
 type ApplicationInterface interface {
-	Routes() *http.ServeMux
+	
 	Run(mux *http.ServeMux)
 }
 type Application struct {
