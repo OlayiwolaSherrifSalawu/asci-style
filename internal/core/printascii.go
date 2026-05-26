@@ -6,7 +6,7 @@ import (
 )
 
 type AsciiServiceInterface interface {
-	GenerateAscii(input, banner string) string
+	GenerateAscii(input, banner []string) (string, error)
 }
 type AsciiService struct {
 	Banners map[string][]string
@@ -28,5 +28,5 @@ func NewAsciiService(embedss embed.FS, directoryname string) (*AsciiService, err
 }
 
 func NewAsciiInterface(asci *AsciiService) AsciiServiceInterface {
-	return &asci
+	return asci
 }
