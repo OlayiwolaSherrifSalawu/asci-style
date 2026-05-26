@@ -39,4 +39,6 @@ func (a *AsciiService) BuildAscii(input, banner string) (string, error) {
 	if input == "" || banner == "" {
 		return "", IMPROPER_ARGUEMENT
 	}
+	new_text := strings.Split(input, "\n")
+	newBanner :=
 }
