@@ -11,8 +11,5 @@ func Run() {
 		log.Fatal(err)
 	}
 	Db := sql.OpenDB(cons)
-	app := NewApplication(Db)
-	newApp := NewApplicationInterFace(app)
-	mux := newApp.Routes()
-	newApp.Run(mux)
+
 }
