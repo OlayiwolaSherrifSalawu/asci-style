@@ -6,7 +6,7 @@ import (
 )
 
 type AsciiServiceInterface interface {
-	GenerateAscii(input, banner []string) (string, error)
+	GenerateAscii(input []string, banner string) (string, error)
 }
 type AsciiService struct {
 	Banners map[string][]string

@@ -7,5 +7,6 @@ func (e Consterror) Error() string {
 }
 
 const (
-	INVALID_CHAR = Consterror("Invalid Chaacter")
+	INVALID_CHAR     = Consterror("Invalid Chaacter")
+	Banner_Not_Found = Consterror("Banner Not Found")
 )
