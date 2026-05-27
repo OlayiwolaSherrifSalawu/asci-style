@@ -11,7 +11,8 @@ type ApplicationInterface interface {
 	Run(mux *http.ServeMux)
 }
 type Application struct {
-	UserHandler *handlers.UserRepo
+	AsciiHandler *handlers.AsciHandlers
+	UserHandler  *handlers.UserRepo
 	configs
 }
 
@@ -21,10 +22,11 @@ type configs struct {
 	ErrorLogger *log.Logger
 }
 
-func NewApplication(userRepor *handlers.UserRepo) *Application {
+func NewApplication(userRepor *handlers.UserRepo, asciiHandler *handlers.AsciHandlers) *Application {
 	return &Application{
-		UserHandler: userRepor,
-		configs:     configs{Port: ":4000", ErrorLogger: log.Default(), InfoLogger: log.Default()},
+		UserHandler:  userRepor,
+		configs:      configs{Port: ":4000", ErrorLogger: log.Default(), InfoLogger: log.Default()},
+		AsciiHandler: asciiHandler,
 	}
 }
 
