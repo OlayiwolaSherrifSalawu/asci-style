@@ -2,13 +2,12 @@ package api
 
 import (
 	"log"
-	"net/http"
 
 	"github.com/OlayiwolaSherrifSalawu/asci-style.git/api/handlers"
 )
 
 type ApplicationInterface interface {
-	Run(mux *http.ServeMux)
+	Run()
 }
 type Application struct {
 	AsciiHandler *handlers.AsciHandlers
