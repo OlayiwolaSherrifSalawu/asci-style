@@ -11,4 +11,5 @@ type AsciiStyle struct {
 	UserId    string `json:"userid"`
 	AsciiText string `json:"asciiText"`
 	PlainText string `json:"plainText"`
+	Banner    string `json:"banner"`
 }

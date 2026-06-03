@@ -8,6 +8,6 @@ func (e Consterror) Error() string {
 
 const (
 	INVALID_CHAR       = Consterror("Invalid Chaacter")
-	Banner_Not_Found   = Consterror("Banner Not Found")
+	Banner_NOT_FOUND   = Consterror("Banner Not Found")
 	IMPROPER_ARGUEMENT = Consterror("Arguement parsed are not valid")
 )

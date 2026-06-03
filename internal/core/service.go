@@ -32,7 +32,7 @@ func (a *AsciiService) Loadbanner(s string) ([]string, error) {
 	if val, ok := a.Banners[s]; ok {
 		return val, nil
 	}
-	return nil, Banner_Not_Found
+	return nil, Banner_NOT_FOUND
 }
 
 func (a *AsciiService) BuildAscii(input, banner string) (string, error) {
