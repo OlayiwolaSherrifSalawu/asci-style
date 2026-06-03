@@ -6,7 +6,6 @@ type User struct {
 	EmailAddress string `json:"emailAddress"`
 	HashPassword string `json:"hashPassword"`
 }
-
 type AsciiStyle struct {
 	UserId    string `json:"userid"`
 	AsciiText string `json:"asciiText"`
