@@ -7,11 +7,11 @@ import (
 	"github.com/OlayiwolaSherrifSalawu/asci-style.git/pkg/model"
 )
 
-type AsciModel struct {
+type UserModel struct {
 	Db *sql.DB
 }
 
-func (d *AsciModel) Insert(ctx context.Context, Users *model.User) error {
+func (d *UserModel) Insert(ctx context.Context, Users *model.User) error {
 	stmt := "INSERT INTO users(id, user_name, email_address, password) VALUES($1, $2, $3, $4)"
 	tx, err := d.Db.BeginTx(ctx, nil)
 	if err != nil {
