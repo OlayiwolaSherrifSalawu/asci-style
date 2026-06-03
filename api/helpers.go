@@ -2,11 +2,12 @@ package api
 
 import (
 	"database/sql"
+	"errors"
 	"os"
 	"strconv"
 
-	"github.com/golang-migrate/migrate/database/postgres"
 	"github.com/golang-migrate/migrate/v4"
+	"github.com/golang-migrate/migrate/v4/database/postgres"
 	"github.com/joho/godotenv"
 	"github.com/lib/pq"
 )
@@ -40,6 +41,15 @@ func (a *Application) RunDbMigration(db *sql.DB) error {
 	if err != nil {
 		return err
 	}
-	
-	
+	migra, err := migrate.NewWithDatabaseInstance("file://migrations", "postgres", dbm)
+	if err != nil {
+		return err
+	}
+	err = migra.Up()
+	if err != nil {
+		if !errors.Is(err, migrate.ErrNoChange) {
+			return err
+		}
+	}
+	return nil
 }
