@@ -1,7 +1,6 @@
 package api
 
 import (
-	"database/sql"
 	"log"
 
 	"github.com/OlayiwolaSherrifSalawu/asci-style.git/api/handlers"
@@ -14,7 +13,11 @@ func Run() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	Db := sql.OpenDB(cons)
+	Db, err := OpenDB(cons)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 	UserHandlers := handlers.NewUserHandler(Db)
 	asciiService, err := core.NewAsciiService(fonts.Embed, "store")
 	if err != nil {
