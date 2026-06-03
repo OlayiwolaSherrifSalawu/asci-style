@@ -12,6 +12,13 @@ import (
 	"github.com/lib/pq"
 )
 
+func OpenDB(conn *pq.Connector) (*sql.DB, error) {
+	db := sql.OpenDB(conn)
+	if err := db.Ping(); err != nil {
+		return nil, err
+	}
+	return db, nil
+}
 func ConnectDb(envFilename string) (*pq.Connector, error) {
 	err := godotenv.Load(envFilename)
 	if err != nil {
