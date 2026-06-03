@@ -35,7 +35,7 @@ func (a *AsciHandlers) ServeAscii(w http.ResponseWriter, r *http.Request) {
 	result, err := a.Asciservice.BuildAscii(data.AsciiHandle.PlainText, data.AsciiHandle.Banner)
 	if err != nil {
 		if errors.Is(err, core.Banner_NOT_FOUND) {
-			a.serverError(w, err)
+			a.serverError(w)
 			return
 		}
 		a.clientError(w, 400)

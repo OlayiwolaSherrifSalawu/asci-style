@@ -6,6 +6,6 @@ func (e *AsciHandlers) clientError(w http.ResponseWriter, err int) {
 	http.Error(w, http.StatusText(err), err)
 }
 
-func (e *AsciHandlers) serverError(w http.ResponseWriter, err error) {
+func (e *AsciHandlers) serverError(w http.ResponseWriter) {
 	http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 }
