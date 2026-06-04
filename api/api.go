@@ -28,6 +28,5 @@ func Run() {
 
 	NewApp := NewApplication(":4040", UserHandlers, ascihandler)
 	NewApp.RunDbMigration(Db)
-	app := NewApplicationInterFace(NewApp)
-	app.Run()
+	NewApp.Run()
 }
