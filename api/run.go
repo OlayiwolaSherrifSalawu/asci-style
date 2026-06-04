@@ -3,6 +3,7 @@ package api
 import (
 	"flag"
 	"log"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
@@ -19,4 +20,13 @@ func (a *Application) Run() {
 	a.ErrorLogger = log.New(os.Stderr, "ERROR: \t", log.Ldate|log.Ltime)
 	// for changing port from the terminal with flag
 	flag.StringVar(&a.Port, "port", ":5050", "Port Of server")
+	flag.Parse()
+	// create server and log it out
+	mux := a.routes()
+	server := http.Server{
+		Addr:     a.Port,
+		Handler:  mux,
+		ErrorLog: a.ErrorLogger,
+	}
+	a.InfoLogger.Printf("started server at port %s \n", a.Port)
 }
