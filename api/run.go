@@ -22,7 +22,7 @@ func (a *Application) Run() {
 	a.InfoLogger = log.New(os.Stdout, "INFO: \t", log.Ldate|log.Ltime)
 	a.ErrorLogger = log.New(os.Stderr, "ERROR: \t", log.Ldate|log.Ltime)
 	// for changing port from the terminal with flag
-	flag.StringVar(&a.Port, "port", ":5050", "Port Of server")
+	flag.StringVar(&a.Port, "port", a.Port, "Port Of server")
 	flag.Parse()
 	// create server and log it out
 	mux := a.routes()
@@ -35,7 +35,7 @@ func (a *Application) Run() {
 		a.InfoLogger.Printf("started server at port %s \n", a.Port)
 		err := server.ListenAndServe()
 		a.InfoLogger.Printf("started server at port %s \n", a.Port)
-		if err != nil && errors.Is(err, http.ErrServerClosed) {
+		if err != nil && !errors.Is(err, http.ErrServerClosed) {
 			a.ErrorLogger.Println(err)
 			return
 		}

@@ -9,7 +9,7 @@ import (
 )
 
 func Run() {
-	cons, err := ConnectDb("config.env")
+	cons, err := ConnectDb("configs.env")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -27,6 +27,7 @@ func Run() {
 	ascihandler := handlers.NewAsciHandler(asciiServiceInt)
 
 	NewApp := NewApplication(":4040", UserHandlers, ascihandler)
+	NewApp.RunDbMigration(Db)
 	app := NewApplicationInterFace(NewApp)
 	app.Run()
 }
