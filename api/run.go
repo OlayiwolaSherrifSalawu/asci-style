@@ -1,12 +1,15 @@
 package api
 
 import (
+	"context"
+	"errors"
 	"flag"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 )
 
 func (a *Application) Run() {
@@ -28,5 +31,24 @@ func (a *Application) Run() {
 		Handler:  mux,
 		ErrorLog: a.ErrorLogger,
 	}
-	a.InfoLogger.Printf("started server at port %s \n", a.Port)
+	go func() {
+		a.InfoLogger.Printf("started server at port %s \n", a.Port)
+		err := server.ListenAndServe()
+		a.InfoLogger.Printf("started server at port %s \n", a.Port)
+		if err != nil && errors.Is(err, http.ErrServerClosed) {
+			a.ErrorLogger.Println(err)
+			return
+		}
+	}()
+	<-quit
+	a.InfoLogger.Println("Shutting Down server")
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*5)
+	defer cancel()
+	err := server.Shutdown(ctx)
+
+	if err != nil {
+		a.ErrorLogger.Println(err)
+		return
+	}
+	a.InfoLogger.Println("server shutdown properly")
 }
