@@ -21,10 +21,10 @@ type configs struct {
 	ErrorLogger *log.Logger
 }
 
-func NewApplication(userRepor *handlers.UserRepo, asciiHandler *handlers.AsciHandlers) *Application {
+func NewApplication(port string, userRepor *handlers.UserRepo, asciiHandler *handlers.AsciHandlers) *Application {
 	return &Application{
 		UserHandler:  userRepor,
-		configs:      configs{Port: ":4000", ErrorLogger: log.Default(), InfoLogger: log.Default()},
+		configs:      configs{Port: port, ErrorLogger: log.Default(), InfoLogger: log.Default()},
 		AsciiHandler: asciiHandler,
 	}
 }

@@ -26,7 +26,7 @@ func Run() {
 	asciiServiceInt := core.NewAsciiInterface(asciiService)
 	ascihandler := handlers.NewAsciHandler(asciiServiceInt)
 
-	NewApp := NewApplication(UserHandlers, ascihandler)
+	NewApp := NewApplication(":4040", UserHandlers, ascihandler)
 	app := NewApplicationInterFace(NewApp)
 	app.Run()
 }
