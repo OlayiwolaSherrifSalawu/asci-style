@@ -27,6 +27,10 @@ func Run() {
 	ascihandler := handlers.NewAsciHandler(asciiServiceInt)
 
 	NewApp := NewApplication(":4040", UserHandlers, ascihandler)
-	NewApp.RunDbMigration(Db)
+	err = NewApp.RunDbMigration(Db)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 	NewApp.Run()
 }

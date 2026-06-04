@@ -7,9 +7,14 @@ import (
 	"strconv"
 
 	"github.com/golang-migrate/migrate/v4"
+	_ "github.com/golang-migrate/migrate/v4"
 	"github.com/golang-migrate/migrate/v4/database/postgres"
+	_ "github.com/golang-migrate/migrate/v4/database/postgres"
+	_ "github.com/golang-migrate/migrate/v4/source/file"
 	"github.com/joho/godotenv"
 	"github.com/lib/pq"
+	_ "github.com/lib/pq"
+	_ "github.com/golang-migrate/migrate/v4/source/file"
 )
 
 func OpenDB(conn *pq.Connector) (*sql.DB, error) {
