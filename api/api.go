@@ -32,5 +32,6 @@ func Run() {
 		log.Fatal(err)
 		return
 	}
-	NewApp.Run()
+	app := NewApplicationInterFace(NewApp)
+	app.Run()
 }

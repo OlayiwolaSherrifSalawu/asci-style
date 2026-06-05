@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"time"
 
@@ -37,6 +38,7 @@ func (a *UserRepo) CreateUser(w http.ResponseWriter, r *http.Request) {
 	dtos := &dto{}
 	err := json.NewDecoder(r.Body).Decode(dtos)
 	if err != nil {
+
 		return
 	}
 	dtos.UserId = uuid.NewString()
@@ -53,6 +55,7 @@ func (a *UserRepo) CreateUser(w http.ResponseWriter, r *http.Request) {
 	dtos = nil
 	err = a.UModel.Insert(contex, users)
 	if err != nil {
+		log.Fatal(err)
 		return
 	}
 	users = nil
