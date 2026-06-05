@@ -18,7 +18,7 @@ func (d *UserModel) Insert(ctx context.Context, Users *model.User) error {
 		return err
 	}
 	defer tx.Rollback()
-	_, err = tx.ExecContext(ctx, stmt, Users.UserId, Users.UserName, Users.HashPassword)
+	_, err = tx.ExecContext(ctx, stmt, Users.UserId, Users.UserName, Users.EmailAddress, Users.HashPassword)
 	if err != nil {
 		return err
 	}
