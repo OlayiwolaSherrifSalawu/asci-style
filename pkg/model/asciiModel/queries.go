@@ -22,5 +22,6 @@ func (d *UserModel) Insert(ctx context.Context, Users *model.User) error {
 	if err != nil {
 		return err
 	}
+	tx.Commit()
 	return nil
 }

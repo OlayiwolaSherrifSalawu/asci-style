@@ -17,8 +17,8 @@ import (
 
 type dto struct {
 	UserId       string `json:"userid"`
-	UserName     string `json:"username"`
-	EmailAddress string `json:"emailAddress"`
+	UserName     string `json:"user_name"`
+	EmailAddress string `json:"email_address"`
 	Password     string `json:"hashPassword"`
 }
 type UserRepo struct {
@@ -58,6 +58,6 @@ func (a *UserRepo) CreateUser(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 		return
 	}
-	users = nil
+
 	fmt.Fprint(w, "created users")
 }
